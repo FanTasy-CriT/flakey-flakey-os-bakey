@@ -2,7 +2,11 @@
   description = "Your new nix config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    # You can access packages and modules from different nixpkgs revs
+    # at the same time. Here's an working example:
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
     # Home manager
@@ -12,8 +16,7 @@
 
   outputs = {
     self,
-    nixpkgs,
-    home-manager,
+    nixpkgs,    home-manager,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -48,7 +51,6 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      # FIXME replace with your hostname
       nixos-btw = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
@@ -61,7 +63,6 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      # FIXME replace with your username@hostname
       "fantasycrit@nixos-btw" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
