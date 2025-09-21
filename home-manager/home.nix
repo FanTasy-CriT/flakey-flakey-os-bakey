@@ -32,7 +32,7 @@
       nautilus code-nautilus bitwarden-desktop rofi gh wofi fish nerd-fonts.zed-mono
       alacritty ags cava sway hyprlock mpc rose-pine-cursor foot swww rose-pine-hyprcursor
       swaylock-effects mpd oh-my-posh gtk3 mako waybar dotnet-sdk nodejs nodePackages.npm
-      python3 python3Packages.pip gcc clang kitty docker docker-compose htop btop neofetch
+      python3 python3Packages.pip gcc kitty docker docker-compose htop btop neofetch
       unzip zip curl postman vlc gimp obs-studio spotify discord clickup gh
     ];
   };
